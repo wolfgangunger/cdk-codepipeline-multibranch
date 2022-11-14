@@ -6,6 +6,7 @@ from aws_cdk import (
 )
 
 from infrastructure.cicd.project_pipeline_stack import ProjectPipelineStack
+from infrastructure.cicd.pipeline_generator_v2_stack import PipelineGeneratorStack
 from generic.infrastructure.iam.bootstrap_role_stack import BootstrapRoleStack
 
 app = App()
@@ -73,5 +74,21 @@ ProjectPipelineStack(
 #     env=accounts.get("tooling"),
 #     config={**config},
 # )
+config = app.node.try_get_context("config")
+accounts = config.get("accounts")
+
+branch_name = app.node.try_get_context("branch_name")
+pipeline_template = "feature-branch-pipeline-template"
+PipelineGeneratorStack(
+    app,
+    "feature-branch-pipeline-generator",
+    # use config["production_branch"] as source, otherwise the deployment of fot2kpi-ws4-pipeline pipeline below will fail due to missing value of branch_name
+    branch_name=branch_name if branch_name else config["development_branch"],
+    pipeline_template=pipeline_template,
+    branch_prefix="^(feature|bug|hotfix)/CAE-[0-9]+/",
+    feature_pipeline_suffix="-FeatureBranchPipeline",
+    env=accounts.get("tooling"),
+    config={**config},
+)
 
 app.synth()
