@@ -186,7 +186,6 @@ class FeaturePipelineStack(Stack):
         commands = [
             "set -e",
             "pip install -r requirements.txt",
-            "pip install -r requirements_dev.txt",
             "pytest -vvvv -s generic/infrastructure/tests",
         ]
         return commands
