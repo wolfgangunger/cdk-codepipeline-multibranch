@@ -67,12 +67,14 @@ class GithubWebhookAPIStack(Stack):
         )
 
         # Create a lambda function that can act as a handler for API Gateway requests
-        print(os.path.join(os.getcwd(), "github_webhook_api"))
         integration_handler_lambda_function = PythonFunction(
             self,
             id="githubWebhookApiHandler",
-            function_name=f"{id}-handler",
-            entry=os.path.join(os.getcwd(), "github_webhook_api"),
+            # function_name=f"{id}-handler",
+            function_name=f"github-handler",
+            entry=os.path.join(
+                os.getcwd(), "infrastructure", "lambdas", "github_webhook_api"
+            ),
             index="github_webhook.py",
             role=handler_role,
             runtime=aws_lambda.Runtime.PYTHON_3_9,
