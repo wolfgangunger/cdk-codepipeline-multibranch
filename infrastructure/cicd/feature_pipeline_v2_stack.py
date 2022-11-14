@@ -36,10 +36,6 @@ class FeaturePipelineStack(Stack):
         qa_account: str = accounts["qa"]["account"]
         prod_account: str = accounts["prod"]["account"]
 
-        # synth_dev_account_role_arn = f"arn:aws:iam::{dev_account}:role/caedge-cicd-simulation-codebuild-role-from-toolchain-account"
-        # synth_qa_account_role_arn = f"arn:aws:iam::{qa_account}:role/caedge-cicd-simulation-codebuild-role-from-toolchain-account"
-        # synth_prod_account_role_arn = f"arn:aws:iam::{prod_account}:role/caedge-cicd-simulation-codebuild-role-from-toolchain-account"
-
         synth_dev_account_role_arn = (
             f"arn:aws:iam::{dev_account}:role/codebuild-role-from-toolchain-account"
         )
