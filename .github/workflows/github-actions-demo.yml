@@ -6,6 +6,8 @@ on:
   push:
     branches:
       - 'feature/**'
+      - 'bug/**' 
+      - 'hotfix/**'  
       #- 'main'
 jobs:
   Explore-GitHub-Actions:
