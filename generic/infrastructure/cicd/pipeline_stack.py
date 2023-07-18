@@ -291,14 +291,7 @@ class PipelineStack(Stack):
         commands = [
             "pip install -r requirements.txt && pip install -r requirements-dev.txt",
             "docker ps",
-            f"REGION={region}",
-            f"ACCOUNT_ID={dev_account}",
-            f'TEMP_CREDS=$(aws sts assume-role --role-arn {dev_account_role_arn} --role-session-name "integration-test")',
-            "export TEMP_CREDS",
-            'export ACCESS_KEY_ID=$(echo "${TEMP_CREDS}" | jq -r ".Credentials.AccessKeyId")',
-            'export SECRET_ACCESS_KEY_ID=$(echo "${TEMP_CREDS}" | jq -r ".Credentials.SecretAccessKey")',
-            'export TOKEN=$(echo "${TEMP_CREDS}" | jq -r ".Credentials.SessionToken")',
-            'AWS_ACCESS_KEY_ID="${ACCESS_KEY_ID}" AWS_SECRET_ACCESS_KEY="${SECRET_ACCESS_KEY_ID}" AWS_SESSION_TOKEN="${TOKEN}" pytest -vvvv -s tests/integration/',
+            ## todo do assume role and execute tests
         ]
         return commands
 

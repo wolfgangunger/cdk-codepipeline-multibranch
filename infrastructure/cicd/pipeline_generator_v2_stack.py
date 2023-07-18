@@ -54,13 +54,6 @@ class PipelineGeneratorApplication(Stage):
             synthesizer=DefaultStackSynthesizer(),
         )
 
-        # FastDevPipelineStack(
-        #    self,
-        #    "fast-dev-pipeline-smart-testing-base",
-        #    branch_name="development",
-        #    config={**config},
-        #    synthesizer=DefaultStackSynthesizer(),
-        # )
 
 
 class PipelineGeneratorStack(Stack):
