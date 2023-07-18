@@ -98,7 +98,6 @@ def handler(event, context):
     print("event")
     print(body)  
     msg = "" 
-    
     try:
             secret = get_github_webhook_secret_from_secretsmanager("github_webhook_secret")
             ref = body.get("ref", "")
