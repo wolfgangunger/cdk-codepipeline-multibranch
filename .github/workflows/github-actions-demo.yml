@@ -16,3 +16,4 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run:  curl -X GET "https://example.com/api/v2/endpoint"

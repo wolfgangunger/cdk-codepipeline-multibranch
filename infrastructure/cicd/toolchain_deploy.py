@@ -5,12 +5,22 @@ from aws_cdk import (
 )
 
 from infrastructure.ecr_stack import EcrStack
+from infrastructure.api.github_webhook_api_stack import GithubWebhookAPIStack
 
 
 class ToolchainDeploy(Stage):
     def __init__(self, scope: Construct, id: str, config: dict = None, **kwargs):
         super().__init__(scope, id, **kwargs)
 
+        githubwebhookapi = GithubWebhookAPIStack(
+            self,
+            "github-webhook-api-stack",
+            config=config,
+            pipeline_template="feature-branch-pipeline-template",
+            branch_prefix="^(feature|bug|hotfix)/CAE-[0-9]+/",
+            feature_pipeline_suffix="-FeatureBranchPipeline",
+        )
+        ## example: ecr repo
         ecr_repo = EcrStack(
             self,
             "EcrRepoStack",
