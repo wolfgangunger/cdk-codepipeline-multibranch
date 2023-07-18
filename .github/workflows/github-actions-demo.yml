@@ -1,6 +1,12 @@
 name: GitHub Actions CodePipeline
 run-name: ${{ github.actor }} action for codepipeline 🚀
-on: [push]
+#on: [push]
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'feature/**'
+      #- 'main'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
