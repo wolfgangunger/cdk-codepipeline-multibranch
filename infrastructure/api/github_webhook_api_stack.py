@@ -36,18 +36,11 @@ class GithubWebhookAPIStack(Stack):
         """
         super().__init__(scope, id, **kwargs)
 
-        # create secret  
-        
+        # create secret     
         secret = aws_secretsmanager.Secret(
             self, 
             "github_webhook_secret",
             secret_name = "github_webhook_secret"
-            # secret_string_value =
-            # {
-          #  "username": aws_secretsmanager.SecretValue.unsafe_plain_text(user.user_name),
-          #  "database": aws_secretsmanager.SecretValue.unsafe_plain_text("foo"),
-            #"password": "123"
-            #}
         )
 
         

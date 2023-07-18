@@ -16,14 +16,15 @@ class ToolchainDeploy(Stage):
             self,
             "github-webhook-api-stack",
             config=config,
-            pipeline_template="feature-branch-pipeline-template",
+            #pipeline_template="feature-branch-pipeline-template",
+            pipeline_template="feature-branch-pipeline-generator", 
             branch_prefix="^(feature|bug|hotfix)/CAE-[0-9]+/",
             feature_pipeline_suffix="-FeatureBranchPipeline",
         )
-        ## example: ecr repo
+        ## example: ecr repo for toolchain account
         ecr_repo = EcrStack(
             self,
-            "EcrRepoStack",
+            "EcrRepoStack-toolchain",
             config=config,
             synthesizer=DefaultStackSynthesizer(),
         )

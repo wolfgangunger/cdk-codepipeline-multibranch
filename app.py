@@ -79,13 +79,13 @@ accounts = config.get("accounts")
 
 branch_name = app.node.try_get_context("branch_name")
 pipeline_template = "feature-branch-pipeline-template"
+#pipeline_template = "feature-branch-pipeline-generator"
 PipelineGeneratorStack(
     app,
     "feature-branch-pipeline-generator",
-    # use config["production_branch"] as source, otherwise the deployment of fot2kpi-ws4-pipeline pipeline below will fail due to missing value of branch_name
     branch_name=branch_name if branch_name else config["development_branch"],
     pipeline_template=pipeline_template,
-    branch_prefix="^(feature|bug|hotfix)/CAE-[0-9]+/",
+    branch_prefix="^(feature|bug|hotfix)/",
     feature_pipeline_suffix="-FeatureBranchPipeline",
     env=accounts.get("tooling"),
     config={**config},
