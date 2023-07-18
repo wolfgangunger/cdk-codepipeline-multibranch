@@ -88,22 +88,23 @@ def delete_feature_pipeline(pipeline_name):
 
 def handler(event, context):
     raw_body_data = event.get("body", {})
-    logger.info(raw_body_data)
-    body = json.loads(raw_body_data)
-    hmac_header = event["headers"]["X-Hub-Signature-256"]
+    body = event.get("body", {})
+    #logger.info(raw_body_data)
+    #body = json.loads(raw_body_data)
+    #hmac_header = event["headers"]["X-Hub-Signature-256"]
     msg = ""
 
     try:
         secret = get_github_webhook_secret_from_secretsmanager("github_webhook_secret")
-        verified = verify_webhook(secret, raw_body_data, hmac_header)
+        #verified = verify_webhook(secret, raw_body_data, hmac_header)
 
-        if not verified:
-            msg = "Did not pass HMAC validation."
-            logger.info(msg)
-            return {"statusCode": 401, "body": json.dumps(msg)}
+        #if not verified:
+        #    msg = "Did not pass HMAC validation."
+        #    logger.info(msg)
+        #    return {"statusCode": 401, "body": json.dumps(msg)}
 
-        else:
-            logger.info("Passed HMAC validation.")
+        #else:
+        #    logger.info("Passed HMAC validation.")
 
             ref = body.get("ref", "")
             ref_type = body.get("ref_type", "")
