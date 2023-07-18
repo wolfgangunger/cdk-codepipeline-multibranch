@@ -31,28 +31,28 @@
     "config": {
       "accounts": {
         "tooling": {
-          "account": "803379787620",
+          "account": "039735417706",
           "region": "eu-west-1"
         },
         "dev": {
-          "account": "805448283132",
+          "account": "039735417706",
           "region": "eu-west-1"
         },
         "qa": {
-          "account": "171962718870",
+          "account": "039735417706",
           "region": "eu-west-1"
         },
         "prod": {
-          "account": "171962718870",
+          "account": "039735417706",
           "region": "eu-west-1"
         }
       },
-      "internet_vpc": "caedge-baseline-internet-access-vpc",
+      "internet_vpc": "vpc-7dcc0414",
       "development_branch": "main",
       "production_branch": "main",
       "owner": "wolfgangunger",
       "repo": "cdk-codepipeline-multibranch",
-      "connection_arn": "arn:aws:codestar-connections:us-east-1:803379787620:connection/9a5f08af-c311-44ff-b77f-efd4074c0672"
+      "connection_arn": "arn:aws:codestar-connections:eu-west-1:039735417706:connection/8c2fcdc0-36a2-4942-b8eb-d9c9837e4fe2"
     }
   }
 }
