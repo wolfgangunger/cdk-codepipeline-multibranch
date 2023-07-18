@@ -139,7 +139,7 @@ class PipelineGeneratorStack(Stack):
             ),
             commands=[
                 "pip install -r requirements.txt",
-                "pip install -r requirements_dev.txt",
+                "pip install -r requirements-dev.txt",
                 #"pytest -vvvv -s generic/infrastructure/tests",
             ],
         )
