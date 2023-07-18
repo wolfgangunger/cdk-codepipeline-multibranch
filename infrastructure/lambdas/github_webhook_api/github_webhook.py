@@ -94,7 +94,6 @@ def handler(event, context):
     body = json.loads(raw_body_data.get("data"))
     #hmac_header = event["headers"]["X-Hub-Signature-256"]
     msg = ""
-
     try:
             secret = get_github_webhook_secret_from_secretsmanager("github_webhook_secret")
         #verified = verify_webhook(secret, raw_body_data, hmac_header)
