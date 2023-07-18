@@ -247,6 +247,14 @@
         "documentation": {}
     },
     {
+        "label": "aws_secretsmanager",
+        "importPath": "aws_cdk",
+        "description": "aws_cdk",
+        "isExtraImport": true,
+        "detail": "aws_cdk",
+        "documentation": {}
+    },
+    {
         "label": "Stack",
         "importPath": "aws_cdk",
         "description": "aws_cdk",

@@ -10,9 +10,11 @@ from aws_cdk import (
     aws_logs,
     Duration,
     CfnOutput,
+    aws_secretsmanager
 )
 
 from aws_cdk.aws_lambda_python_alpha import PythonFunction
+
 
 
 class GithubWebhookAPIStack(Stack):
@@ -34,6 +36,20 @@ class GithubWebhookAPIStack(Stack):
         """
         super().__init__(scope, id, **kwargs)
 
+        # create secret  
+        
+        secret = aws_secretsmanager.Secret(
+            self, 
+            "github_webhook_secret"
+            # secret_string_value =
+            # {
+          #  "username": aws_secretsmanager.SecretValue.unsafe_plain_text(user.user_name),
+          #  "database": aws_secretsmanager.SecretValue.unsafe_plain_text("foo"),
+            #"password": "123"
+            #}
+        )
+
+        
         # Create an IAM Role for use with lambda
         handler_role = aws_iam.Role(
             self,
