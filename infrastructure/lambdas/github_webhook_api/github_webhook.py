@@ -96,7 +96,6 @@ def handler(event, context):
     print(body)
     #hmac_header = event["headers"]["X-Hub-Signature-256"]
     msg = "" 
-    
     try:
             secret = get_github_webhook_secret_from_secretsmanager("github_webhook_secret")
             ref = body.get("ref", "")
