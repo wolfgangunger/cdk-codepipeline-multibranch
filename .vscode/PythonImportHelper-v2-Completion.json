@@ -2206,7 +2206,7 @@
         "kind": 2,
         "importPath": "infrastructure.lambdas.github_webhook_api.github_webhook",
         "description": "infrastructure.lambdas.github_webhook_api.github_webhook",
-        "peekOfCode": "def delete_feature_pipeline(pipeline_name):\n    codepipeline_client = boto3.client(\"codepipeline\")\n    response = codepipeline_client.delete_pipeline(name=pipeline_name)\ndef handler(event, context):\n    #raw_body_data = event.get(\"body\", {})\n    raw_body_data = json.loads(event.get(\"body\", {}))\n    print(raw_body_data)\n    print(raw_body_data.data)\n    #logger.info(raw_body_data)\n    body = raw_body_data.get(\"data\")",
+        "peekOfCode": "def delete_feature_pipeline(pipeline_name):\n    codepipeline_client = boto3.client(\"codepipeline\")\n    response = codepipeline_client.delete_pipeline(name=pipeline_name)\ndef handler(event, context):\n    #raw_body_data = event.get(\"body\", {})\n    raw_body_data = json.loads(event.get(\"body\", {}))\n    print(raw_body_data)\n    #logger.info(raw_body_data)\n    body = raw_body_data.get(\"data\")\n    event = raw_body_data.get(\"event\")",
         "detail": "infrastructure.lambdas.github_webhook_api.github_webhook",
         "documentation": {}
     },
@@ -2215,7 +2215,7 @@
         "kind": 2,
         "importPath": "infrastructure.lambdas.github_webhook_api.github_webhook",
         "description": "infrastructure.lambdas.github_webhook_api.github_webhook",
-        "peekOfCode": "def handler(event, context):\n    #raw_body_data = event.get(\"body\", {})\n    raw_body_data = json.loads(event.get(\"body\", {}))\n    print(raw_body_data)\n    print(raw_body_data.data)\n    #logger.info(raw_body_data)\n    body = raw_body_data.get(\"data\")\n    print(body)  \n    #hmac_header = event[\"headers\"][\"X-Hub-Signature-256\"]\n    msg = \"\" ",
+        "peekOfCode": "def handler(event, context):\n    #raw_body_data = event.get(\"body\", {})\n    raw_body_data = json.loads(event.get(\"body\", {}))\n    print(raw_body_data)\n    #logger.info(raw_body_data)\n    body = raw_body_data.get(\"data\")\n    event = raw_body_data.get(\"event\")\n    print(\"event\")\n    print(body)  \n    msg = \"\" ",
         "detail": "infrastructure.lambdas.github_webhook_api.github_webhook",
         "documentation": {}
     },
