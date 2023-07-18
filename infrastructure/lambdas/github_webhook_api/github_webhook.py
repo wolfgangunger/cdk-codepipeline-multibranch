@@ -88,6 +88,7 @@ def delete_feature_pipeline(pipeline_name):
 
 def handler(event, context):
     raw_body_data = event.get("body", {})
+    logger.info(raw_body_data)
     body = json.loads(raw_body_data)
     hmac_header = event["headers"]["X-Hub-Signature-256"]
     msg = ""

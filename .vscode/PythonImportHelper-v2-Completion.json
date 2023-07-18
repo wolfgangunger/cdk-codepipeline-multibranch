@@ -1401,6 +1401,150 @@
         "documentation": {}
     },
     {
+        "label": "get_github_webhook_secret_from_secretsmanager",
+        "kind": 2,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "def get_github_webhook_secret_from_secretsmanager(github_webhook_secret):\n    response = sm_client.get_secret_value(\n        SecretId=github_webhook_secret,\n    )\n    if \"SecretString\" in response:\n        secret = json.loads(response[\"SecretString\"]).get(github_webhook_secret)\n    return secret\ndef branch_name_check(branch_name, branch_prefix):\n    if re.match(branch_prefix, branch_name):\n        return True",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "branch_name_check",
+        "kind": 2,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "def branch_name_check(branch_name, branch_prefix):\n    if re.match(branch_prefix, branch_name):\n        return True\n    else:\n        return False\ndef verify_webhook(secret, data, hmac_header):\n    received_hmac = re.sub(r\"^sha256=\", \"\", hmac_header)\n    hexdigest = hmac.new(\n        secret.encode(\"utf-8\"), data.encode(\"utf-8\"), hashlib.sha256\n    ).hexdigest()",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "verify_webhook",
+        "kind": 2,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "def verify_webhook(secret, data, hmac_header):\n    received_hmac = re.sub(r\"^sha256=\", \"\", hmac_header)\n    hexdigest = hmac.new(\n        secret.encode(\"utf-8\"), data.encode(\"utf-8\"), hashlib.sha256\n    ).hexdigest()\n    return hexdigest == received_hmac\ndef dict_haskey(d, k):\n    if k in d.keys():\n        return True\n    else:",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "dict_haskey",
+        "kind": 2,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "def dict_haskey(d, k):\n    if k in d.keys():\n        return True\n    else:\n        return False\ndef save_branch_name_in_ssm(branch_name):\n    branch_chars = re.sub(\"[^0-9a-zA-Z-]+\", \"\", str(branch_name))\n    response = ssm_client.put_parameter(\n        Name=branch_chars, Value=branch_name, Type=\"String\", Overwrite=True\n    )",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "save_branch_name_in_ssm",
+        "kind": 2,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "def save_branch_name_in_ssm(branch_name):\n    branch_chars = re.sub(\"[^0-9a-zA-Z-]+\", \"\", str(branch_name))\n    response = ssm_client.put_parameter(\n        Name=branch_chars, Value=branch_name, Type=\"String\", Overwrite=True\n    )\ndef delete_branch_name_in_ssm(branch_name):\n    branch_chars = re.sub(\"[^0-9a-zA-Z-]+\", \"\", str(branch_name))\n    response = ssm_client.delete_parameter(Name=branch_chars)\ndef create_feature_pipeline_from_template(\n    branch_name, pipeline_template, pipeline_name",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "delete_branch_name_in_ssm",
+        "kind": 2,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "def delete_branch_name_in_ssm(branch_name):\n    branch_chars = re.sub(\"[^0-9a-zA-Z-]+\", \"\", str(branch_name))\n    response = ssm_client.delete_parameter(Name=branch_chars)\ndef create_feature_pipeline_from_template(\n    branch_name, pipeline_template, pipeline_name\n):\n    codepipeline_client = boto3.client(\"codepipeline\")\n    response = codepipeline_client.get_pipeline(\n        name=pipeline_template,\n    )",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "create_feature_pipeline_from_template",
+        "kind": 2,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "def create_feature_pipeline_from_template(\n    branch_name, pipeline_template, pipeline_name\n):\n    codepipeline_client = boto3.client(\"codepipeline\")\n    response = codepipeline_client.get_pipeline(\n        name=pipeline_template,\n    )\n    pipeline_describe = response.get(\"pipeline\", {})\n    pipeline_describe[\"name\"] = pipeline_name\n    pipeline_describe[\"stages\"][0][\"actions\"][0][\"configuration\"][",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "delete_feature_pipeline",
+        "kind": 2,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "def delete_feature_pipeline(pipeline_name):\n    codepipeline_client = boto3.client(\"codepipeline\")\n    response = codepipeline_client.delete_pipeline(name=pipeline_name)\ndef handler(event, context):\n    raw_body_data = event.get(\"body\", {})\n    logger.info(raw_body_data)\n    body = json.loads(raw_body_data)\n    hmac_header = event[\"headers\"][\"X-Hub-Signature-256\"]\n    msg = \"\"\n    try:",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "handler",
+        "kind": 2,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "def handler(event, context):\n    raw_body_data = event.get(\"body\", {})\n    logger.info(raw_body_data)\n    body = json.loads(raw_body_data)\n    hmac_header = event[\"headers\"][\"X-Hub-Signature-256\"]\n    msg = \"\"\n    try:\n        secret = get_github_webhook_secret_from_secretsmanager(\"github_webhook_secret\")\n        verified = verify_webhook(secret, raw_body_data, hmac_header)\n        if not verified:",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "branch_prefix",
+        "kind": 5,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "branch_prefix = os.getenv(\"branch_prefix\")\nfeature_pipeline_suffix = os.getenv(\"feature_pipeline_suffix\")\npipeline_template = os.getenv(\"pipeline_template\")\ncodepipeline_client = boto3.client(\"codepipeline\")\nsm_client = boto3.client(\"secretsmanager\")\nssm_client = boto3.client(\"ssm\")\nlogger = logging.getLogger()\nlogger.setLevel(logging.INFO)\ndef get_github_webhook_secret_from_secretsmanager(github_webhook_secret):\n    response = sm_client.get_secret_value(",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "feature_pipeline_suffix",
+        "kind": 5,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "feature_pipeline_suffix = os.getenv(\"feature_pipeline_suffix\")\npipeline_template = os.getenv(\"pipeline_template\")\ncodepipeline_client = boto3.client(\"codepipeline\")\nsm_client = boto3.client(\"secretsmanager\")\nssm_client = boto3.client(\"ssm\")\nlogger = logging.getLogger()\nlogger.setLevel(logging.INFO)\ndef get_github_webhook_secret_from_secretsmanager(github_webhook_secret):\n    response = sm_client.get_secret_value(\n        SecretId=github_webhook_secret,",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "pipeline_template",
+        "kind": 5,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "pipeline_template = os.getenv(\"pipeline_template\")\ncodepipeline_client = boto3.client(\"codepipeline\")\nsm_client = boto3.client(\"secretsmanager\")\nssm_client = boto3.client(\"ssm\")\nlogger = logging.getLogger()\nlogger.setLevel(logging.INFO)\ndef get_github_webhook_secret_from_secretsmanager(github_webhook_secret):\n    response = sm_client.get_secret_value(\n        SecretId=github_webhook_secret,\n    )",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "codepipeline_client",
+        "kind": 5,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "codepipeline_client = boto3.client(\"codepipeline\")\nsm_client = boto3.client(\"secretsmanager\")\nssm_client = boto3.client(\"ssm\")\nlogger = logging.getLogger()\nlogger.setLevel(logging.INFO)\ndef get_github_webhook_secret_from_secretsmanager(github_webhook_secret):\n    response = sm_client.get_secret_value(\n        SecretId=github_webhook_secret,\n    )\n    if \"SecretString\" in response:",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "sm_client",
+        "kind": 5,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "sm_client = boto3.client(\"secretsmanager\")\nssm_client = boto3.client(\"ssm\")\nlogger = logging.getLogger()\nlogger.setLevel(logging.INFO)\ndef get_github_webhook_secret_from_secretsmanager(github_webhook_secret):\n    response = sm_client.get_secret_value(\n        SecretId=github_webhook_secret,\n    )\n    if \"SecretString\" in response:\n        secret = json.loads(response[\"SecretString\"]).get(github_webhook_secret)",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "ssm_client",
+        "kind": 5,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "ssm_client = boto3.client(\"ssm\")\nlogger = logging.getLogger()\nlogger.setLevel(logging.INFO)\ndef get_github_webhook_secret_from_secretsmanager(github_webhook_secret):\n    response = sm_client.get_secret_value(\n        SecretId=github_webhook_secret,\n    )\n    if \"SecretString\" in response:\n        secret = json.loads(response[\"SecretString\"]).get(github_webhook_secret)\n    return secret",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "description": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "peekOfCode": "logger = logging.getLogger()\nlogger.setLevel(logging.INFO)\ndef get_github_webhook_secret_from_secretsmanager(github_webhook_secret):\n    response = sm_client.get_secret_value(\n        SecretId=github_webhook_secret,\n    )\n    if \"SecretString\" in response:\n        secret = json.loads(response[\"SecretString\"]).get(github_webhook_secret)\n    return secret\ndef branch_name_check(branch_name, branch_prefix):",
+        "detail": "cdk.out.asset.eac4c0845cdbbfc3d0c551f68acd250b6cbfd383c988a3118649e2529df2b035.github_webhook",
+        "documentation": {}
+    },
+    {
         "label": "JobDefConstruct",
         "kind": 6,
         "importPath": "generic.infrastructure.batch.jobdef_construct",
@@ -1630,7 +1774,7 @@
         "kind": 2,
         "importPath": "infrastructure.lambdas.github_webhook_api.github_webhook",
         "description": "infrastructure.lambdas.github_webhook_api.github_webhook",
-        "peekOfCode": "def delete_feature_pipeline(pipeline_name):\n    codepipeline_client = boto3.client(\"codepipeline\")\n    response = codepipeline_client.delete_pipeline(name=pipeline_name)\ndef handler(event, context):\n    raw_body_data = event.get(\"body\", {})\n    body = json.loads(raw_body_data)\n    hmac_header = event[\"headers\"][\"X-Hub-Signature-256\"]\n    msg = \"\"\n    try:\n        secret = get_github_webhook_secret_from_secretsmanager(\"github_webhook_secret\")",
+        "peekOfCode": "def delete_feature_pipeline(pipeline_name):\n    codepipeline_client = boto3.client(\"codepipeline\")\n    response = codepipeline_client.delete_pipeline(name=pipeline_name)\ndef handler(event, context):\n    raw_body_data = event.get(\"body\", {})\n    logger.info(raw_body_data)\n    body = json.loads(raw_body_data)\n    hmac_header = event[\"headers\"][\"X-Hub-Signature-256\"]\n    msg = \"\"\n    try:",
         "detail": "infrastructure.lambdas.github_webhook_api.github_webhook",
         "documentation": {}
     },
@@ -1639,7 +1783,7 @@
         "kind": 2,
         "importPath": "infrastructure.lambdas.github_webhook_api.github_webhook",
         "description": "infrastructure.lambdas.github_webhook_api.github_webhook",
-        "peekOfCode": "def handler(event, context):\n    raw_body_data = event.get(\"body\", {})\n    body = json.loads(raw_body_data)\n    hmac_header = event[\"headers\"][\"X-Hub-Signature-256\"]\n    msg = \"\"\n    try:\n        secret = get_github_webhook_secret_from_secretsmanager(\"github_webhook_secret\")\n        verified = verify_webhook(secret, raw_body_data, hmac_header)\n        if not verified:\n            msg = \"Did not pass HMAC validation.\"",
+        "peekOfCode": "def handler(event, context):\n    raw_body_data = event.get(\"body\", {})\n    logger.info(raw_body_data)\n    body = json.loads(raw_body_data)\n    hmac_header = event[\"headers\"][\"X-Hub-Signature-256\"]\n    msg = \"\"\n    try:\n        secret = get_github_webhook_secret_from_secretsmanager(\"github_webhook_secret\")\n        verified = verify_webhook(secret, raw_body_data, hmac_header)\n        if not verified:",
         "detail": "infrastructure.lambdas.github_webhook_api.github_webhook",
         "documentation": {}
     },
