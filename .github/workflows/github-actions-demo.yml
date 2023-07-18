@@ -17,7 +17,7 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: Webhook
         uses: distributhor/workflow-webhook@v3
-        with:
+        env:
           webhook_url: "https://0u70r6cxkd.execute-api.eu-west-1.amazonaws.com/prod/webhook"
           #json: '{ "repository": "${{github.event.repository.full_name}}", "number": "${{github.event.number}}", "created_at": "${{github.event.pull_request.created_at}}", "updated_at": "${{github.event.pull_request.updated_at}}" }'
           data: '{ "repository": "${{github.event.repository.full_name}}", "ref": "${{github.ref_name}}", "ref_type": "branch", "description": "multi pipeline wunger" }'
