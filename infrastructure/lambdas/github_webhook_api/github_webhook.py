@@ -92,12 +92,12 @@ def handler(event, context):
     #raw_body_data = event.get("body", {})
     raw_body_data = json.loads(event.get("body", {}))
     print(raw_body_data)
+    print(raw_body_data.data)
     #logger.info(raw_body_data)
     body = raw_body_data.get("data")
     print(body)  
     #hmac_header = event["headers"]["X-Hub-Signature-256"]
     msg = "" 
-    
     try:
             secret = get_github_webhook_secret_from_secretsmanager("github_webhook_secret")
             ref = body.get("ref", "")
