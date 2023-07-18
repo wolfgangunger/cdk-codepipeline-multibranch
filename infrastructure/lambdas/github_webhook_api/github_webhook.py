@@ -90,9 +90,8 @@ def delete_feature_pipeline(pipeline_name):
 
 def handler(event, context):
     raw_body_data = event.get("body", {})
-    body = event
     #logger.info(raw_body_data)
-    body = json.loads(raw_body_data)
+    body = json.loads(raw_body_data.get("data"))
     #hmac_header = event["headers"]["X-Hub-Signature-256"]
     msg = ""
 
@@ -107,7 +106,6 @@ def handler(event, context):
 
         #else:
         #    logger.info("Passed HMAC validation.")
-
             ref = body.get("ref", "")
             ref_type = body.get("ref_type", "")
             description = dict_haskey(body, "description")
