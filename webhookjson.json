@@ -59,6 +59,15 @@
         "domainName": "0u70r6cxkd.execute-api.eu-west-1.amazonaws.com",
         "apiId": "0u70r6cxkd"
     },
-    "body": "{"event": "push",  "repository": "wolfgangunger/cdk-codepipeline-multibranch", "commit": "e8e701b61adaa5da367ba71863724df375db037a",\n  "ref": "refs/heads/main",\n  "head": null,\n  "workflow": "GitHub Actions CodePipeline",\n  "requestID": "889ac6fc-2494-40f4-bbfb-b4fca5e182e7",\n  "data": {\n    "repository": "wolfgangunger/cdk-codepipeline-multibranch",\n    "ref": "main",\n    "ref_type": "branch",\n    "description": "multi pipeline wunger"\n  }\n}",
-    "isBase64Encoded": False
+    "body": "{"event": "push",  "repository": "wolfgangunger/cdk-codepipeline-multibranch","commit": "e8e701b61adaa5da367ba71863724df375db037a","ref": "refs/heads/main",
+    "head": null,
+    "workflow": "GitHub Actions CodePipeline",
+    "requestID": "889ac6fc-2494-40f4-bbfb-b4fca5e182e7",
+    "data": {
+        "repository": "wolfgangunger/cdk-codepipeline-multibranch",
+        "ref": "main",
+        "ref_type": "branch",
+        "description": "multi pipeline wunger"
+    }
+}","isBase64Encoded": False
 }
