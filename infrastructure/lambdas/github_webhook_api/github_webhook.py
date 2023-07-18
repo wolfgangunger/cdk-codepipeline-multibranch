@@ -28,12 +28,12 @@ def get_github_webhook_secret_from_secretsmanager(github_webhook_secret):
 
 
 def branch_name_check(branch_name, branch_prefix):
-    return True
+    #return True
     # implement if needed
-    # if re.match(branch_prefix, branch_name):
-    #     return True
-    # else:
-    #     return False
+    if re.match(branch_prefix, branch_name):
+        return True
+    else:
+        return False
 
 
 def verify_webhook(secret, data, hmac_header):
@@ -89,12 +89,13 @@ def delete_feature_pipeline(pipeline_name):
 
 
 def handler(event, context):
-    raw_body_data = event.get("body", {})
+    #raw_body_data = event.get("body", {})
+    raw_body_data = json.loads(event.get("body", {}))
     #logger.info(raw_body_data)
-    body = json.loads(raw_body_data.get("data"))
+    body = raw_body_data.get("data")
+    print(body)
     #hmac_header = event["headers"]["X-Hub-Signature-256"]
-    msg = ""
-    
+    msg = "" 
     try:
             secret = get_github_webhook_secret_from_secretsmanager("github_webhook_secret")
         #verified = verify_webhook(secret, raw_body_data, hmac_header)
