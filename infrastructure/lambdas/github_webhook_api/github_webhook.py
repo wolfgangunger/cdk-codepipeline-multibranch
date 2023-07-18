@@ -95,6 +95,7 @@ def handler(event, context):
     #logger.info(raw_body_data)
     body = raw_body_data.get("data")
     print(body)
+    
     #hmac_header = event["headers"]["X-Hub-Signature-256"]
     msg = "" 
     try:
