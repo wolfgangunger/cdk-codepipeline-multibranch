@@ -91,6 +91,7 @@ def delete_feature_pipeline(pipeline_name):
 def handler(event, context):
     #raw_body_data = event.get("body", {})
     raw_body_data = json.loads(event.get("body", {}))
+    print(raw_body_data)
     #logger.info(raw_body_data)
     body = raw_body_data.get("data")
     print(body)
