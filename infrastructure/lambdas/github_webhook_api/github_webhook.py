@@ -95,7 +95,7 @@ def handler(event, context):
     msg = ""
 
     try:
-        secret = get_github_webhook_secret_from_secretsmanager("github_webhook_secret")
+            secret = get_github_webhook_secret_from_secretsmanager("github_webhook_secret")
         #verified = verify_webhook(secret, raw_body_data, hmac_header)
 
         #if not verified:
