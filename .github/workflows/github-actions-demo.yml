@@ -18,6 +18,6 @@ jobs:
       - name: Webhook
         uses: distributhor/workflow-webhook@v3
         with:
-          url: "https://0u70r6cxkd.execute-api.eu-west-1.amazonaws.com/prod/webhook"
+          webhook_url: "https://0u70r6cxkd.execute-api.eu-west-1.amazonaws.com/prod/webhook"
           #json: '{ "repository": "${{github.event.repository.full_name}}", "number": "${{github.event.number}}", "created_at": "${{github.event.pull_request.created_at}}", "updated_at": "${{github.event.pull_request.updated_at}}" }'
-          json: '{ "repository": "${{github.event.repository.full_name}}", "ref": "${{github.ref_name}}", "ref_type": "branch", "description": "multi pipeline wunger" }'
+          data: '{ "repository": "${{github.event.repository.full_name}}", "ref": "${{github.ref_name}}", "ref_type": "branch", "description": "multi pipeline wunger" }'
