@@ -17,7 +17,7 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "💡 Commit message ${{ github.event.head_commit.message }} "
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
@@ -27,4 +27,4 @@ jobs:
         env:
           webhook_url: "https://0u70r6cxkd.execute-api.eu-west-1.amazonaws.com/prod/webhook"
           #json: '{ "repository": "${{github.event.repository.full_name}}", "number": "${{github.event.number}}", "created_at": "${{github.event.pull_request.created_at}}", "updated_at": "${{github.event.pull_request.updated_at}}" }'
-          data: '{ "repository": "${{github.event.repository.full_name}}", "ref": "${{github.ref_name}}", "ref_type": "branch", "description": "multi pipeline wunger" }'
+          data: '{ "repository": "${{github.event.repository.full_name}}", "ref": "${{github.ref_name}}", "ref_type": "branch", "${{ github.event.head_commit.message }} ": "multi pipeline wunger" }'
