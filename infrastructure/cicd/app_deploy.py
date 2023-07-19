@@ -11,6 +11,7 @@ class AppDeployBootstrap(Stage):
     def __init__(self, scope: Construct, id: str, config: dict = None, **kwargs):
         super().__init__(scope, id, **kwargs)
 
+        # example stack which should be deployed on bootstap before the others deployments of stackss
         ecr_repo = EcrStack(
             self,
             "EcrRepoStack",
