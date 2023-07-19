@@ -73,7 +73,8 @@ class FeaturePipelineStack(Stack):
         pipeline = CodePipeline(
             self,
             id,
-            pipeline_name="feature-branch-pipeline-template",
+            pipeline_name=id,   
+            #pipeline_name="feature-branch-pipeline-template",
             synth=synth_step,
             cross_account_keys=True,
             code_build_defaults=pipelines.CodeBuildOptions(

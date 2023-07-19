@@ -9,6 +9,10 @@ on:
       - 'bug/**' 
       - 'hotfix/**'  
       #- 'main'
+  pull_request:
+      types: [closed]            
+  #delete:
+
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -18,13 +22,14 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: echo "💡 Commit message ${{ github.event.head_commit.message }} "
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
+      #- name: List files in the repository
+      #  run: |
+      #    ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: Webhook
         uses: distributhor/workflow-webhook@v3
         env:
+          # edit the url for your api gateway stage url or custom domain
           webhook_url: "https://0u70r6cxkd.execute-api.eu-west-1.amazonaws.com/prod/webhook"
-          #json: '{ "repository": "${{github.event.repository.full_name}}", "number": "${{github.event.number}}", "created_at": "${{github.event.pull_request.created_at}}", "updated_at": "${{github.event.pull_request.updated_at}}" }'
           data: '{ "repository": "${{github.event.repository.full_name}}", "ref": "${{github.ref_name}}", "ref_type": "branch", "${{ github.event.head_commit.message }} ": "multi pipeline wunger" }'
+          
