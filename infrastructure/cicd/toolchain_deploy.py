@@ -4,7 +4,7 @@ from aws_cdk import (
     DefaultStackSynthesizer,
 )
 
-from infrastructure.ecr_stack import EcrStack
+from infrastructure.data.ecr_stack import EcrStack
 
 
 class ToolchainDeploy(Stage):

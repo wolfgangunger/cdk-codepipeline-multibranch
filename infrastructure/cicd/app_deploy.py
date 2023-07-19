@@ -1,9 +1,9 @@
 from aws_cdk import Stage, DefaultStackSynthesizer
 from constructs import Construct
 
-from infrastructure.ecr_stack import EcrStack
+from infrastructure.data.ecr_stack import EcrStack
 from infrastructure.lambdas.example_lambda import ExampleLambda
-from infrastructure.s3bucket_stack import S3Stack
+from infrastructure.data.s3bucket_stack import S3Stack
 from infrastructure.batch.job_defs_stack import JobDefsStack
 
 
