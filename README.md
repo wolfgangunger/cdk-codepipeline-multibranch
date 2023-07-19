@@ -40,7 +40,7 @@ cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/Admini
 
 
 ### deploy the pipeline via cli    
-cdk deploy  cdk-pipeline  
+cdk deploy  cdk-pipeline-multi-branch
   
 now the pipeline should be ready and will be triggered on any push to the repo  
 
