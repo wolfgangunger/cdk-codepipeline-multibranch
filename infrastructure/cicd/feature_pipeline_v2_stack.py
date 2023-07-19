@@ -26,7 +26,7 @@ class FeaturePipelineStack(PipelineStack):
         config: dict = None,
         **kwargs,
     ):
-        
+        self.branch_name = feature_branch_name
         super().__init__(
             scope,
             id,
@@ -34,6 +34,8 @@ class FeaturePipelineStack(PipelineStack):
             config=config,
             **kwargs,
         )
+       
+        
     
 # this is the feature branch pipeline 
 # it got the same superclass as the normal pipeline, thus same actions to synth, deploy and test
@@ -53,7 +55,7 @@ class FeaturePipelineStack(PipelineStack):
     ):
         git_input = pipelines.CodePipelineSource.connection(
             repo_string=f"{repo_owner}/{repo}",
-            branch=self.feature_branch_name,
+            branch=self.branch_name,
             connection_arn=codestar_connection_arn,
         )
         return git_input

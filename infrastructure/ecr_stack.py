@@ -13,6 +13,6 @@ class EcrStack(Stack):
         config: dict = None,
         **kwargs,
     ) -> None:
-        super().__init__(scope, id, **kwargs)
+        super().__init__(scope=scope, id=id, stack_name=id, **kwargs)
 
         repo = aws_ecr.Repository(self, "ecr-repo-1")

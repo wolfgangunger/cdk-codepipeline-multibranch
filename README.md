@@ -47,6 +47,7 @@ now the pipeline should be ready and will be triggered on any push to the repo
 ### deploy the feature-branch-pipeline-generator via cli    
 cdk deploy feature-branch-pipeline-generator
 Edit the secret github_webhook_secret to keep a structure like this:
+{"SecretString" : "xxxxx"}
 
 ### edit github-actions-demo.yml
 edit the webhook_url to your api gateway url ( or custom domain)

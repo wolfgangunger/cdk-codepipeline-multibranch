@@ -24,7 +24,7 @@ class AppDeploy(Stage):
         super().__init__(scope, id, **kwargs)
 
         # s3 bucket Stack Example
-        s3bucket = S3Stack(self, "S3Stack", config=config)
+        s3bucket = S3Stack(self, "S3Stack")
 
         # put stage id into configuration object for use in JobDefStack
         config["stage"] = id
@@ -41,5 +41,4 @@ class AppDeploy(Stage):
             self,
             "LambdaStack",
             "LambdaDesciption",
-            config=config,
         )

@@ -25,7 +25,7 @@ class JobDefsStack(Stack):
         please review to use your project specific information
 
         """
-        super().__init__(scope, id, description=description, **kwargs)
+        super().__init__(scope, id,stack_name=id, description=description, **kwargs)
 
         aws_region = config["accounts"][config["stage"]]["region"]
         aws_account = config["accounts"][config["stage"]]["account"]

@@ -10,9 +10,8 @@ class S3Stack(Stack):
         self,
         scope: Construct,
         id: str,
-        config: dict = None,
         **kwargs,
     ) -> None:
-        super().__init__(scope, id, **kwargs)
+        super().__init__(scope, id, stack_name=id, **kwargs)
 
         repo = s3.Bucket(self, "bucket-cdk-pipeline-project-wu")
