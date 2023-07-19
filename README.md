@@ -4,6 +4,7 @@ cdk project with codepipeline to deploy aws resources to stage accounts
 ## project strucure
   
 README  
+github-actions-demo.yml (to be edited with your hook url)
 cdk.json
 requirements.txt  
 app.py ( the main python file for the cdk commands, creates the Pipeline Stack)  
@@ -40,10 +41,17 @@ cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/Admini
 
 ### deploy the pipeline via cli    
 cdk deploy  cdk-pipeline  
-and
-cdk deploy cdk-pipeline-prod
   
 now the pipeline should be ready and will be triggered on any push to the repo  
+
+### deploy the feature-branch-pipeline-generator via cli    
+cdk deploy feature-branch-pipeline-generator
+Edit the secret github_webhook_secret to keep a structure like this:
+
+### edit github-actions-demo.yml
+edit the webhook_url to your api gateway url ( or custom domain)
+
+### create branch and push to see the new feature pipeline gets generated
 
 ## tests
 ### infrastructure tests

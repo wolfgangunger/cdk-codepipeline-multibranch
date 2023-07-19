@@ -10,11 +10,9 @@ from aws_cdk import (
     aws_logs,
     Duration,
     CfnOutput,
-    aws_secretsmanager
 )
 
 from aws_cdk.aws_lambda_python_alpha import PythonFunction
-
 
 
 class GithubWebhookAPIStack(Stack):
@@ -36,14 +34,6 @@ class GithubWebhookAPIStack(Stack):
         """
         super().__init__(scope, id, **kwargs)
 
-        # create secret     
-        secret = aws_secretsmanager.Secret(
-            self, 
-            "github_webhook_secret",
-            secret_name = "github_webhook_secret"
-        )
-
-        
         # Create an IAM Role for use with lambda
         handler_role = aws_iam.Role(
             self,
@@ -80,9 +70,10 @@ class GithubWebhookAPIStack(Stack):
         integration_handler_lambda_function = PythonFunction(
             self,
             id="githubWebhookApiHandler",
-            function_name=f"{id}-handler",
+            # function_name=f"{id}-handler",
+            function_name=f"github-handler",
             entry=os.path.join(
-                os.getcwd(), "infrastructure/lambdas/github_webhook_api"
+                os.getcwd(), "infrastructure", "lambdas", "github_webhook_api"
             ),
             index="github_webhook.py",
             role=handler_role,

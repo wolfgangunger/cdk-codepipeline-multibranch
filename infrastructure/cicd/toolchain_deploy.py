@@ -5,7 +5,6 @@ from aws_cdk import (
 )
 
 from infrastructure.ecr_stack import EcrStack
-from infrastructure.api.github_webhook_api_stack import GithubWebhookAPIStack
 
 
 class ToolchainDeploy(Stage):

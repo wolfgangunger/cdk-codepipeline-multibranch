@@ -12,15 +12,10 @@ from aws_cdk import aws_codebuild
 from aws_cdk.aws_codebuild import BuildEnvironment
 from aws_cdk.pipelines import CodePipeline
 
-from infrastructure.cicd.github_webhook_api_stack import GithubWebhookAPIStack
+from infrastructure.api.github_webhook_api_stack import GithubWebhookAPIStack
 from infrastructure.cicd.feature_pipeline_v2_stack import (
     FeaturePipelineStack,
 )
-
-# from infrastructure.cicd import (
-#    FastDevPipelineStack,
-# )
-
 
 class PipelineGeneratorApplication(Stage):
     def __init__(
