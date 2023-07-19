@@ -40,7 +40,7 @@ class PipelineGeneratorApplication(Stage):
             config=config,
             synthesizer=DefaultStackSynthesizer(),
         )
-
+        # a template pipeline for a feature branch
         FeaturePipelineStack(
             self,
             pipeline_template,
@@ -49,6 +49,7 @@ class PipelineGeneratorApplication(Stage):
             config={**config},
             synthesizer=DefaultStackSynthesizer(),
         )
+        # add more templates if needed, like fast building pipelines with less tests or without deploy etc
 
 
 
