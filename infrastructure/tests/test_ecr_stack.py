@@ -17,7 +17,7 @@ FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), r"../"))
 if FOLDER not in sys.path:
     sys.path.append(FOLDER)
 
-from infrastructure.ecr_stack import EcrStack
+from infrastructure.data.ecr_stack import EcrStack
 
 # - Defines ------------------------------------------------------------------------------------------------------------
 CDK_JSON = os.path.abspath(

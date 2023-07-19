@@ -17,7 +17,7 @@ FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), r"../"))
 if FOLDER not in sys.path:
     sys.path.append(FOLDER)
 
-from infrastructure.s3bucket_stack import S3Stack
+from infrastructure.data.s3bucket_stack import S3Stack
 
 # - Defines ------------------------------------------------------------------------------------------------------------
 CDK_JSON = os.path.abspath(
