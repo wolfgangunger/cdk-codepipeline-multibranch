@@ -52,7 +52,6 @@ class PipelineGeneratorApplication(Stage):
         # add more templates if needed, like fast building pipelines with less tests or without deploy etc
 
 
-
 class PipelineGeneratorStack(Stack):
     def __init__(
         self,
