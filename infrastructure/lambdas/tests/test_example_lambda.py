@@ -40,7 +40,7 @@ class TestLambdaStack(unittest.TestCase):
 
         # WHEN
         stack = ExampleLambda(
-            app, "test-lambda-stack", "test-lambda-stack", config=config
+            app, "test-lambda-stack", "test-lambda-stack"
         )
 
         # THEN

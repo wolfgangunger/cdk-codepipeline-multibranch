@@ -15,7 +15,7 @@ class ExampleLambda(Stack):
         id: str,
         description: str,    
         **kwargs):
-        super().__init__(scope, id,stack_name=id,description=description, **kwargs)
+        super().__init__(scope, id,description=description,stack_name=id, **kwargs)
 
         example_lambda = _lambda.Function(
             self,
