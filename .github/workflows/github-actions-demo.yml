@@ -11,6 +11,7 @@ on:
   pull_request:
       types: [closed]            
   delete:
+    
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
