@@ -2434,16 +2434,7 @@
         "kind": 2,
         "importPath": "infrastructure.lambdas.github_webhook_api.github_webhook",
         "description": "infrastructure.lambdas.github_webhook_api.github_webhook",
-        "peekOfCode": "def verify_webhook(secret, data, hmac_header):\n    received_hmac = re.sub(r\"^sha256=\", \"\", hmac_header)\n    hexdigest = hmac.new(\n        secret.encode(\"utf-8\"), data.encode(\"utf-8\"), hashlib.sha256\n    ).hexdigest()\n    return hexdigest == received_hmac\ndef dict_haskey(d, k):\n    if k in d.keys():\n        return True\n    else:",
-        "detail": "infrastructure.lambdas.github_webhook_api.github_webhook",
-        "documentation": {}
-    },
-    {
-        "label": "dict_haskey",
-        "kind": 2,
-        "importPath": "infrastructure.lambdas.github_webhook_api.github_webhook",
-        "description": "infrastructure.lambdas.github_webhook_api.github_webhook",
-        "peekOfCode": "def dict_haskey(d, k):\n    if k in d.keys():\n        return True\n    else:\n        return False\ndef save_branch_name_in_ssm(branch_name):\n    branch_chars = re.sub(\"[^0-9a-zA-Z-]+\", \"\", str(branch_name))\n    response = ssm_client.put_parameter(\n        Name=branch_chars, Value=branch_name, Type=\"String\", Overwrite=True\n    )",
+        "peekOfCode": "def verify_webhook(secret, data, hmac_header):\n    received_hmac = re.sub(r\"^sha256=\", \"\", hmac_header)\n    hexdigest = hmac.new(\n        secret.encode(\"utf-8\"), data.encode(\"utf-8\"), hashlib.sha256\n    ).hexdigest()\n    return hexdigest == received_hmac\n#def dict_haskey(d, k):\n#    if k in d.keys():\n#        return True\n#    else:",
         "detail": "infrastructure.lambdas.github_webhook_api.github_webhook",
         "documentation": {}
     },

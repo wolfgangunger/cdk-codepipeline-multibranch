@@ -44,11 +44,11 @@ def verify_webhook(secret, data, hmac_header):
     return hexdigest == received_hmac
 
 
-def dict_haskey(d, k):
-    if k in d.keys():
-        return True
-    else:
-        return False
+#def dict_haskey(d, k):
+#    if k in d.keys():
+#        return True
+#    else:
+#        return False
 
 
 def save_branch_name_in_ssm(branch_name):
@@ -103,7 +103,8 @@ def handler(event, context):
             ref = body.get("ref", "")
             ref_head = body.get("ref_head", "")
             ref_type = body.get("ref_type", "")
-            description = dict_haskey(body, "description") # commit message
+            #description = dict_haskey(body, "description") # commit message
+            description = body.get("description", "")
             logger.info(f"ref: {ref}, ref_type: {ref_type}, description: {description}")
 
             if ref_type == "branch":
