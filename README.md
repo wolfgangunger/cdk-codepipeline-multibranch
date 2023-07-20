@@ -16,6 +16,9 @@ infrastructure/lambdas/tests ( lambda tests)
 tests/acceptance  
 tests/integration  
 
+## architecture
+![alt text](https://github.com/wolfgangunger/cdk-codepipeline-multibranch/feature-pipeline.jpg)
+
 ## setup project
 ###
 create codestar connection in AWS Toolchain Account ( if you want to use code star. otherwise you have to configure your Github in the source )
