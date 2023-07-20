@@ -101,12 +101,14 @@ def handler(event, context):
     try:
             secret = get_github_webhook_secret_from_secretsmanager("github_webhook_secret")
             ref = body.get("ref", "")
+            ref_head = body.get("ref_head", "")
             ref_type = body.get("ref_type", "")
-            description = dict_haskey(body, "description")
+            description = dict_haskey(body, "description") # commit message
             logger.info(f"ref: {ref}, ref_type: {ref_type}, description: {description}")
 
             if ref_type == "branch":
                 branch_name = ref
+                # create pipeline 
                 if description:
                     if branch_name_check(branch_name, branch_prefix):
                         logger.info(f"Saving branch name to parameter store: {branch_name}")
@@ -126,6 +128,8 @@ def handler(event, context):
                         msg = f"Branch name {branch_name} does not match the prefix {branch_prefix}"
 
                 else:
+                    ## delete pipeline on PR close
+                    branch_name = ref_head
                     if branch_name_check(branch_name, branch_prefix):
                         logger.info(f"Deleting branch name from parameter store: {branch_name}")
                         delete_branch_name_in_ssm(branch_name)
