@@ -3,12 +3,12 @@ run-name: ${{ github.actor }} action for codepipeline 🚀
 #on: [push]
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - 'feature/**'
-      - 'bug/**' 
-      - 'hotfix/**'  
-      #- 'main'
+  #push:
+  #  branches:
+  #    - 'feature/**'
+  #    - 'bug/**' 
+  #    - 'hotfix/**'  
+  #    #- 'main'
   pull_request:
       #types: [closed]            
   #delete:
