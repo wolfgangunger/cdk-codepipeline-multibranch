@@ -27,6 +27,7 @@ jobs:
       #    ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: echo "🍏 head_Ref ${{github.head_ref }}."    
+      - run: echo "🍏 Commit Message ${{github.event.head_commit.message}}."         
       - run: echo "🍏 github.event.pull_request.base.ref ${{github.event.pull_request.base.ref }}."                   
       - name: Webhook
         uses: distributhor/workflow-webhook@v3
