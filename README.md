@@ -52,9 +52,17 @@ Edit the secret github_webhook_secret to keep a structure like this:
 {"SecretString" : "xxxxx"}
 
 ### edit github-actions-demo.yml
-edit the webhook_url to your api gateway url ( or custom domain)
+edit the webhook_url to your api gateway url ( or custom domain)  
+change action triggers if needed   
 
 ### create branch and push to see the new feature pipeline gets generated
+create a new branch  
+git checkout -b feature/branch1  
+and push to your repo  
+the pipeline will be generated
+
+### create PR and merge 
+the pipeline will be destroyed  
 
 ## tests
 ### infrastructure tests
