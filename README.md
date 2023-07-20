@@ -18,6 +18,12 @@ tests/integration
 
 ## architecture
 ![image](https://github.com/wolfgangunger/cdk-codepipeline-multibranch/blob/main/feature-pipeline.jpg)
+The project contains object orientated cdk design  
+therefor cdk constructs are either in   
+generic/infrastructure (reusable generic classes)  
+or  
+infrastructure (project specific classes)  
+
 
 ## setup project
 ###
