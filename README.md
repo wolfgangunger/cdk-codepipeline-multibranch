@@ -17,7 +17,7 @@ tests/acceptance
 tests/integration  
 
 ## architecture
-![alt text](https://github.com/wolfgangunger/cdk-codepipeline-multibranch/feature-pipeline.jpg)
+![image](https://github.com/wolfgangunger/cdk-codepipeline-multibranch/blob/main/feature-pipeline.jpg)
 
 ## setup project
 ###
