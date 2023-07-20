@@ -38,7 +38,6 @@ with stage credentials, first account is toolchain , second stage account
 cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess --trust 12345678912 aws://12345678915/eu-west-1
 
 
-
 ### deploy the pipeline via cli    
 cdk deploy  cdk-pipeline-multi-branch
   
