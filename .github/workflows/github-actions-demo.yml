@@ -26,6 +26,7 @@ jobs:
       #  run: |
       #    ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "🍏 head_Ref ${{github.head_ref }}."      
       - name: Webhook
         uses: distributhor/workflow-webhook@v3
         env:
@@ -33,4 +34,4 @@ jobs:
           webhook_url: "https://8gzmftuav8.execute-api.eu-west-1.amazonaws.com/prod/webhook"
           data: '{ "repository": "${{github.event.repository.full_name}}", "ref": "${{github.ref_name}}", "ref_type": "branch", "description": "${{ github.event.head_commit.message }}" }'
            
-           
+            
