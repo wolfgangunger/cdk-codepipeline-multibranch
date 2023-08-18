@@ -1,5 +1,13 @@
-# cdk-codepipeline
-cdk project with codepipeline to deploy aws resources to stage accounts
+# cdk-feature-branch-codepipeline
+cdk project with codepipeline to deploy aws resources to stage accounts  
+
+it contains a pipeline to deploy from one branch to your stage accounts  
+this pipeline is configured to deploy from one toolchain account to your stage accounts,   
+so it is configured with cross account roles  
+
+and a second pipeline to create pipelines for feature branches  
+also cross account capable 
+
 
 ## project strucure
   
@@ -46,20 +54,32 @@ other accounts (dev, int , qa)
 with stage credentials, first account is toolchain , second stage account
 cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess --trust 12345678912 aws://12345678915/eu-west-1
 
+###
+commit your changes on cdk to your repo before deploying the pipeline
 
-### deploy the pipeline via cli    
+### deploy role(s)
+cdk deploy bootstrap-dev-role-stack
+
+### deploy the 'main' cdk pipeline via cli    (this pipeline will deploy the main/master branch, multi branch not supported)
 cdk deploy  cdk-pipeline-multi-branch
+    
+now the pipeline should be ready and will be triggered on any push to the repo   
+it will run immediatelly, so the stacks defined in this pipeline (in app_deploy and toolchain_deploy )will get deployed already   
+this pipeline would also work stand alone, if you don't need the feature branch   
   
-now the pipeline should be ready and will be triggered on any push to the repo  
-
-### deploy the feature-branch-pipeline-generator via cli    
+### deploy the feature-branch-pipeline-generator via cli    (this one generates for each branch a pipeline )
 cdk deploy feature-branch-pipeline-generator
+
+it will deploy the github webhook api and the pipeline template and the pipeline generator pipeline   
+
+### edit secret ( if configured for git access )
 Edit the secret github_webhook_secret to keep a structure like this:
 {"SecretString" : "xxxxx"}
 
 ### edit github-actions-demo.yml
 edit the webhook_url to your api gateway url ( or custom domain)  
 change action triggers if needed   
+otherwise your github cannot notify the api about a new branch  
 
 ### create branch and push to see the new feature pipeline gets generated
 create a new branch  

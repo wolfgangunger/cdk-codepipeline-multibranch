@@ -55,8 +55,7 @@ BootstrapRoleStack(
     },
 )
 
-
-##Pipeline Dev/QA
+## normal Pipeline Dev/QA on one branch
 ProjectPipelineStack(
     app,
     "cdk-pipeline-multi-branch",
@@ -65,21 +64,12 @@ ProjectPipelineStack(
     config={**config},
 )
 
-
-# ## Pipeline Prod
-# ProjectPipelineStack(
-#     app,
-#     "cdk-pipeline-prod",
-#     development_pipeline=False,
-#     env=accounts.get("tooling"),
-#     config={**config},
-# )
+## feature branch pipeline 
 config = app.node.try_get_context("config")
 accounts = config.get("accounts")
-
 branch_name = app.node.try_get_context("branch_name")
 pipeline_template = "feature-branch-pipeline-template"
-#pipeline_template = "feature-branch-pipeline-generator"
+
 PipelineGeneratorStack(
     app,
     "feature-branch-pipeline-generator",

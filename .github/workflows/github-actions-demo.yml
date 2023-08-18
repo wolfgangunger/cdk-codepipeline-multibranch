@@ -27,7 +27,7 @@ jobs:
         uses: distributhor/workflow-webhook@v3
         env: 
           # edit the url for your api gateway stage url or custom domain
-          webhook_url: "https://xxx.execute-api.eu-west-1.amazonaws.com/prod/webhook"
+          webhook_url: "https://zt6eshhoah.execute-api.eu-west-1.amazonaws.com/prod/webhook"
           data: '{ "repository": "${{github.event.repository.full_name}}", "ref": "${{github.ref_name}}", "ref_head": "${{github.head_ref}}", "ref_type": "branch", "description": "${{ github.event.head_commit.message }}" }'
            
               
