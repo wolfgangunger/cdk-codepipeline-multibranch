@@ -94,6 +94,9 @@ change action triggers if needed
 otherwise your github cannot notify the api about a new branch  
 commit to your repo 
 
+verify your github actions are triggers when you make changes to your repo and call the webhook api without error
+![image](https://github.com/wolfgangunger/cdk-codepipeline-multibranch/blob/main/github.jpg)
+
 ### create branch and push to see the new feature pipeline gets generated
 create a new branch  
 git checkout -b feature/branch1  
