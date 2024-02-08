@@ -68,7 +68,6 @@ cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/Admini
 ###
 commit your changes on cdk to your repo before deploying the pipeline
 
-
 ### deploy role(s)
 cdk deploy bootstrap-dev-role-stack
 
@@ -82,7 +81,9 @@ this pipeline would also work stand alone, if you don't need the feature branch
 ### deploy the feature-branch-pipeline-generator via cli    (this one generates for each branch a pipeline )
 cdk deploy feature-branch-pipeline-generator
 
-it will deploy the github webhook api and the pipeline template and the pipeline generator pipeline   
+it will deploy the github webhook api and the pipeline template and the pipeline generator pipeline    
+the pipeline template will fail, because the branch is not set. this is ok, it serves just as a template   
+for the feature branch pipelines, which will have the branch correctly set, after notifying the pipeline by webhook   
 
 ### edit secret ( if configured for git access )
 Edit the secret github_webhook_secret to keep a structure like this:
@@ -116,6 +117,4 @@ pytest -vvvv -s infrastructure/lambdas/tests
 only dummy tests in this example 
 ### acceptance tests
 only dummy tests in this example 
-
-
 
