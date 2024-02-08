@@ -106,6 +106,9 @@ git checkout -b feature/branch1
 and push to your repo  
 the pipeline will be generated
 
+verify there is a parameter for your branch in Parameter Store
+![image](https://github.com/wolfgangunger/cdk-codepipeline-multibranch/blob/main/parameterstore.jpg)
+
 ### create PR and merge 
 the pipeline will be destroyed  
 
