@@ -1,6 +1,11 @@
 # cdk-codepipeline
 cdk project with codepipeline to deploy aws resources to stage accounts
 
+it is designed to deploy to various stage accounts.  
+you can test the project also in just one account.  
+in this case your toolchain account and one stage account will be in the same account.  
+just don't deploy dev/qa stages twice in the same account  
+
 ## project strucure
   
 README  
@@ -33,31 +38,50 @@ adapt the cdk.json for your accounts, also codestar connection url
 adapt branch names etc
 ### write and add your stacks
 create your own stacks and add to infrastructure folder, add to AppDeploy, write tests
-### deploy the roles to the stage accounts
-deploy the 3 roles to dev, qa and prod
-for example with : cdk-deploy bootstrap-qa-role-stack
-#### bootstrap
-bootstrap the toolchain & stage accounts
-with toolchain credentials
-cdk bootstrap   --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess  aws://12345678912/us-east-1
 
-other accounts (dev, int , qa)
-with stage credentials, first account is toolchain , second stage account
-cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess --trust 12345678912 aws://12345678915/eu-west-1
+#### bootstrap the toolchain & stage accounts
+bootstrap the toolchain account:  
+with toolchain credentials
+cdk bootstrap   --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess  aws://12345678912/us-east-1  
+to be deleted
+cdk bootstrap   --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess  aws://243277030071/eu-west-1
+  
+also all other accounts (dev, qa & prod) or at least one if you test the pipeline with just one stage account:   
+with stage credentials, first account is toolchain , second stage account  
+cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess --trust 12345678912 aws://12345678915/eu-west-1  
+to be deleted
+cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess --trust 243277030071 aws://243277030071/eu-west-1
+
+### deployment
+use this command to get an overview of the stacks    
+cdk ls  
+important are these one from the app.py:  
+bootstrap-dev-role-stack  
+bootstrap-qa-role-stack   
+bootstrap-prod-role-stack  
+cdk-pipeline-multi-branch  
+feature-branch-pipeline-generator  
+
+### deploy the roles to the stage accounts
+be sure you have dockerhub/docker desktop running   
+deploy the 3 roles to dev, qa and prod
+for example with : cdk-deploy bootstrap-dev-role-stack
 
 
 ### deploy the pipeline via cli    
-cdk deploy  cdk-pipeline-multi-branch
+be sure you have dockerhub/docker desktop running     
+cdk deploy  cdk-pipeline-multi-branch  
   
 now the pipeline should be ready and will be triggered on any push to the repo  
 
-### deploy the feature-branch-pipeline-generator via cli    
-cdk deploy feature-branch-pipeline-generator
-Edit the secret github_webhook_secret to keep a structure like this:
+### deploy the feature-branch-pipeline-generator via cli   
+be sure you have dockerhub/docker desktop running      
+cdk deploy feature-branch-pipeline-generator  
+Edit the secret 'github_webhook_secret' in the webconsole to keep a structure like this (if your repo is not public):  
 {"SecretString" : "xxxxx"}
 
 ### edit github-actions-demo.yml
-edit the webhook_url to your api gateway url ( or custom domain)  
+edit the webhook_url to your api gateway url ( or custom domain) , see .github\workflows   
 change action triggers if needed   
 
 ### create branch and push to see the new feature pipeline gets generated

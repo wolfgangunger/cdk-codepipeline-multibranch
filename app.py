@@ -36,7 +36,7 @@ BootstrapRoleStack(
 BootstrapRoleStack(
     app,
     "bootstrap-qa-role-stack",
-    account="dev",
+    account="qa",
     toolchain_account=accounts.get("tooling").get("account"),
     env={
         "account": qa_account,
@@ -47,7 +47,7 @@ BootstrapRoleStack(
 BootstrapRoleStack(
     app,
     "bootstrap-prod-role-stack",
-    account="dev",
+    account="prod",
     toolchain_account=accounts.get("tooling").get("account"),
     env={
         "account": prod_account,
