@@ -8,6 +8,10 @@ so it is configured with cross account roles
 and a second pipeline to create pipelines for feature branches  
 also cross account capable 
 
+if you want to test this pipeline in just one account, please define in cdk.json the 4 accounts with the same number  
+this works, but keep in mind, you should not deploy twice in the same account.  
+for example the dev/qa pipeline would deploy to 2 accounts. don't confirm the manual approval before QA in this case.  
+
 
 ## project strucure
   
@@ -100,6 +104,9 @@ the pipeline will be destroyed
 
 ## tests
 ### infrastructure tests
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+
 pytest -vvvv -s generic/infrastructure/tests
 pytest -vvvv -s infrastructure/tests
 ### lambda tests 
