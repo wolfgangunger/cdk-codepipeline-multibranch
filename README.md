@@ -85,15 +85,17 @@ it will deploy the github webhook api and the pipeline template and the pipeline
 the pipeline template will fail, because the branch is not set. this is ok, it serves just as a template   
 for the feature branch pipelines, which will have the branch correctly set, after notifying the pipeline by webhook   
 
-### edit secret ( if configured for git access )
-Edit the secret github_webhook_secret to keep a structure like this:
+### edit secret ( required for private git access, but secret must be defined anyways for the lambda code )
+Edit the secret "github_webhook_secret" in the webconsole to keep a structure like this:
 {"SecretString" : "xxxxx"}
+important ! 
+if you don't adapt the secret, the lambda will fail on this:  secret = get_github_webhook_secret_from_secretsmanager("github_webhook_secret")
 
 ### edit github-actions-demo.yml
 edit the webhook_url to your api gateway url ( or custom domain) , see .github\workflows   
 change action triggers if needed   
 otherwise your github cannot notify the api about a new branch  
-commit to your repo 
+commit to your repo !
 
 verify your github actions are triggers when you make changes to your repo and call the webhook api without error
 ![image](https://github.com/wolfgangunger/cdk-codepipeline-multibranch/blob/main/github.jpg)
@@ -103,6 +105,9 @@ create a new branch
 git checkout -b feature/branch1  
 and push to your repo  
 the pipeline will be generated
+
+verify there is a parameter for your branch in Parameter Store
+![image](https://github.com/wolfgangunger/cdk-codepipeline-multibranch/blob/main/parameterstore.jpg)
 
 ### create PR and merge 
 the pipeline will be destroyed  
@@ -120,4 +125,7 @@ pytest -vvvv -s infrastructure/lambdas/tests
 only dummy tests in this example 
 ### acceptance tests
 only dummy tests in this example 
+
+
+
 
