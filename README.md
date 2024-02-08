@@ -59,7 +59,7 @@ the pipeline will checkout your repo, if the cdk.json is still with xxx values, 
 bootstrap the toolchain account:  
 with toolchain credentials
 cdk bootstrap   --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess  aws://12345678912/us-east-1
-cdk bootstrap   --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess  aws://039735417706/eu-west-1
+
 
 other accounts (dev, int , qa)
 with stage credentials, first account is toolchain , second stage account
