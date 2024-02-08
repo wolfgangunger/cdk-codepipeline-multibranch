@@ -1,10 +1,13 @@
-# cdk-codepipeline
-cdk project with codepipeline to deploy aws resources to stage accounts
+# cdk-feature-branch-codepipeline
+cdk project with codepipeline to deploy aws resources to stage accounts  
 
-it is designed to deploy to various stage accounts.  
-you can test the project also in just one account.  
-in this case your toolchain account and one stage account will be in the same account.  
-just don't deploy dev/qa stages twice in the same account  
+it contains a pipeline to deploy from one branch to your stage accounts  
+this pipeline is configured to deploy from one toolchain account to your stage accounts,   
+so it is configured with cross account roles  
+
+and a second pipeline to create pipelines for feature branches  
+also cross account capable 
+
 
 ## project strucure
   
@@ -31,6 +34,10 @@ infrastructure (project specific classes)
 
 
 ## setup project
+### clone this repo to your own git repo
+clone this repo to your own git repo
+the pipeline needs a repo to checkout the project and cdk files
+
 ###
 create codestar connection in AWS Toolchain Account ( if you want to use code star. otherwise you have to configure your Github in the source )
 ### cdk.json
@@ -39,50 +46,48 @@ adapt branch names etc
 ### write and add your stacks
 create your own stacks and add to infrastructure folder, add to AppDeploy, write tests
 
+### commit 
+commit your changes to your repo
+before you create the pipeline the cdk.json must be checked in with the current values  
+the pipeline will checkout your repo, if the cdk.json is still with xxx values, it will fail  
+
 #### bootstrap the toolchain & stage accounts
 bootstrap the toolchain account:  
 with toolchain credentials
-cdk bootstrap   --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess  aws://12345678912/us-east-1  
-to be deleted
-cdk bootstrap   --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess  aws://243277030071/eu-west-1
+cdk bootstrap   --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess  aws://12345678912/us-east-1
+cdk bootstrap   --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess  aws://039735417706/eu-west-1
+
+other accounts (dev, int , qa)
+with stage credentials, first account is toolchain , second stage account
+cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess --trust 12345678912 aws://12345678915/eu-west-1
+
+###
+commit your changes on cdk to your repo before deploying the pipeline
+
+
+### deploy role(s)
+cdk deploy bootstrap-dev-role-stack
+
+### deploy the 'main' cdk pipeline via cli    (this pipeline will deploy the main/master branch, multi branch not supported)
+cdk deploy  cdk-pipeline-multi-branch
+    
+now the pipeline should be ready and will be triggered on any push to the repo   
+it will run immediatelly, so the stacks defined in this pipeline (in app_deploy and toolchain_deploy )will get deployed already   
+this pipeline would also work stand alone, if you don't need the feature branch   
   
-also all other accounts (dev, qa & prod) or at least one if you test the pipeline with just one stage account:   
-with stage credentials, first account is toolchain , second stage account  
-cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess --trust 12345678912 aws://12345678915/eu-west-1  
-to be deleted
-cdk bootstrap --cloudformation-execution-policies arn:aws:iam::aws:policy/AdministratorAccess --trust 243277030071 aws://243277030071/eu-west-1
+### deploy the feature-branch-pipeline-generator via cli    (this one generates for each branch a pipeline )
+cdk deploy feature-branch-pipeline-generator
 
-### deployment
-use this command to get an overview of the stacks    
-cdk ls  
-important are these one from the app.py:  
-bootstrap-dev-role-stack  
-bootstrap-qa-role-stack   
-bootstrap-prod-role-stack  
-cdk-pipeline-multi-branch  
-feature-branch-pipeline-generator  
+it will deploy the github webhook api and the pipeline template and the pipeline generator pipeline   
 
-### deploy the roles to the stage accounts
-be sure you have dockerhub/docker desktop running   
-deploy the 3 roles to dev, qa and prod
-for example with : cdk-deploy bootstrap-dev-role-stack
-
-
-### deploy the pipeline via cli    
-be sure you have dockerhub/docker desktop running     
-cdk deploy  cdk-pipeline-multi-branch  
-  
-now the pipeline should be ready and will be triggered on any push to the repo  
-
-### deploy the feature-branch-pipeline-generator via cli   
-be sure you have dockerhub/docker desktop running      
-cdk deploy feature-branch-pipeline-generator  
-Edit the secret 'github_webhook_secret' in the webconsole to keep a structure like this (if your repo is not public):  
+### edit secret ( if configured for git access )
+Edit the secret github_webhook_secret to keep a structure like this:
 {"SecretString" : "xxxxx"}
 
 ### edit github-actions-demo.yml
 edit the webhook_url to your api gateway url ( or custom domain) , see .github\workflows   
 change action triggers if needed   
+otherwise your github cannot notify the api about a new branch  
 
 ### create branch and push to see the new feature pipeline gets generated
 create a new branch  
