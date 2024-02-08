@@ -46,13 +46,13 @@ the pipeline needs a repo to checkout the project and cdk files
 create codestar connection in AWS Toolchain Account ( if you want to use code star. otherwise you have to configure your Github in the source )
 ### cdk.json
 adapt the cdk.json for your accounts, also codestar connection url
-adapt branch names etc
+adapt account numbers, vpc,  branch names etc
 ### write and add your stacks
-create your own stacks and add to infrastructure folder, add to AppDeploy, write tests
+create your own stacks and add to infrastructure folder, add to AppDeploy, write/adapt tests
 
 ### commit 
-commit your changes to your repo
-before you create the pipeline the cdk.json must be checked in with the current values  
+commit your changes to your repo  
+before you create the pipeline the cdk.json must be checked in with the current values   
 the pipeline will checkout your repo, if the cdk.json is still with xxx values, it will fail  
 
 #### bootstrap the toolchain & stage accounts
@@ -92,6 +92,7 @@ Edit the secret github_webhook_secret to keep a structure like this:
 edit the webhook_url to your api gateway url ( or custom domain) , see .github\workflows   
 change action triggers if needed   
 otherwise your github cannot notify the api about a new branch  
+commit to your repo 
 
 ### create branch and push to see the new feature pipeline gets generated
 create a new branch  
